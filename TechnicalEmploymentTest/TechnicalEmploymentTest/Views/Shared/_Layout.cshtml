@@ -9,6 +9,7 @@
     <title>@ViewBag.Title - Test</title>
     @Styles.Render("~/Content/css")
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 
 </head>
@@ -34,18 +35,12 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="~/Job/jobs">
+                <a class="nav-link" href="~/img/img">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Job List</span>
+                    <span>Listado de imagenes</span>
                 </a>
             </li>
 
-            <li class="nav-item active">
-                <a class="nav-link" href="~/Job/jobsApi">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Job List from Api</span>
-                </a>
-            </li>
 
         </ul>
         <!-- End of Sidebar -->
@@ -270,7 +265,7 @@
     </a>
 
     <!-- Modal -->
-    <div id="myModal" name="myModal" class="modal fade" role="dialog">
+    <div class="modal fade" id="myModal" name="myModal" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content">
@@ -282,17 +277,22 @@
                     <p>Some text in the modal.</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" id="okModal" name="okModal" class="btn btn-primary">Ok</button>
+                    <button type="button" id="cancelModal" name="cancelModal" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
 
         </div>
     </div>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    @*@Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")*@
     @Scripts.Render("~/bundles/template")
     @RenderSection("scripts", required: false)
+
+
+
 
     <script>
         $("input:checkbox[name='imgCheck']").click(function () {
@@ -307,17 +307,21 @@
             } else {
                 check_ = false;
             }
-          
 
-            $.ajax({
-                type: 'POST',
-                url: 'img/Edit/',
-                data: { id: idImg, checkedval: check_ },
-                dataType: 'json',
-                success: function () {
-                    alert("dfgd");
-                }
-            });
+            $('#myModal').modal();
+
+            $('#okModal').click(function () {
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'img/Edit/',
+                    data: { id: idImg, checkedval: check_ },
+                    dataType: 'json',
+                    success: function () {
+                        alert("dfgd");
+                    }
+                });
+            });          
 
         });
     </script>

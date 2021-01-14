@@ -105,8 +105,14 @@ namespace TechnicalEmploymentTest.Areas.Img.Controllers
                     value = checkedval
                 };
 
-                db.Entry(if_).State = EntityState.Modified;
-                db.SaveChanges();
+                using (var context = new testEntities())
+                {
+                    context.Entry(if_).State = EntityState.Modified;
+                    context.SaveChanges();
+                }
+
+                //db.Entry(if_).State = EntityState.Modified;
+                //db.SaveChanges();
 
                 return RedirectToAction("Index");
             }
