@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[Job]
+(
+	[JobId] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [JobTitle] NVARCHAR(100) NOT NULL, 
+    [Description] NVARCHAR(200) NOT NULL, 
+    [CreatedAt] DATETIME NOT NULL DEFAULT GETDATE(), 
+    [ExpiresAt] DATE NULL 
+)

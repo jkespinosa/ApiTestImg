@@ -1,0 +1,86 @@
+﻿@model IEnumerable<TechnicalEmploymentTest.Models.ModelImageFavorite>
+
+
+@{
+    ViewBag.Title = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Img List</h1>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">
+                @Html.ActionLink("Create New", "Create")
+                <a class="btn" data-toggle="modal" href="#myModal">Launch Modal</a>
+
+            </h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.id)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.title)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.thumbnailUrl)
+                            </th>
+                            <th>Favorite</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.id)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.title)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.thumbnailUrl)
+                            </th>
+                            <th>Favorite</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.id)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.title)
+                                </td>
+                                <td>
+                                    <a href="@Html.DisplayFor(modelItem => item.url)">
+
+                                        <img src="@Html.DisplayFor(modelItem => item.thumbnailUrl)" width="50" height="50" />
+                                    </a>
+
+                                </td>
+                                <td>
+                                    <input type="checkbox" id="@Html.DisplayFor(modelItem => item.id)" data-id="@Html.DisplayFor(modelItem => item.id)" name="imgCheck"
+                                           @(item.chekedFavorite ? "checked='checked'" : "") />
+                                </td>
+                              
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.container-fluid -->
